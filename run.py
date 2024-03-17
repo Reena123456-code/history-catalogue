@@ -34,6 +34,7 @@ def validate_data(values):
     or if there are not 5 values
     """
     try:
+        [list(value) for value in values]
         if len(values) != 5:    
            raise ValueError(
             f"5 values required, you provided {len(values)}"
