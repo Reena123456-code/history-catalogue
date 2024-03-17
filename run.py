@@ -1,4 +1,5 @@
 import gspread
+import pandas
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
