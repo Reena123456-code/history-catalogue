@@ -1,18 +1,19 @@
 import gspread
-import pandas
-from pprint import pprint
 from google.oauth2.service_account import Credentials
+import pandas as pd
+from pprint import pprint
+from tabulate import tabulate
 
 SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
+"https://www.googleapis.com/auth/spreadsheets",
+"https://www.googleapis.com/auth/drive.file",
+"https://www.googleapis.com/auth/drive"
+]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE) 
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('history-catalogue1')
+SHEET = GSPREAD_CLIENT.open('history-catalogue1')   
 
 
 def get_catalogue_data():
@@ -78,7 +79,7 @@ def select_author(catalogue_data):
     """
     print("finding author...\n")
     author = SHEET.worksheet("catalogue").get_all_values()
-    author_row = author
+    author_column = author
     print(author)
 
 
