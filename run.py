@@ -1,5 +1,6 @@
 import gspread
 import pandas
+from pprint import pprint
 from google.oauth2.service_account import Credentials
 
 SCOPE = [
@@ -71,9 +72,27 @@ def update_catalogue_worksheet(data):
     catalogue_worksheet.append_row(data)
     print("Catalogue worksheet updated successfully \n")
 
-    
-data = get_catalogue_data()
-catalogue_data = (data)
-update_catalogue_worksheet(catalogue_data)
+def select_author(catalogue_data): 
+    """
+    finding author and returning titles they have written,catagory,box no,colour. 
+    """
+    print("finding author...\n")
+    author = SHEET.worksheet("catalogue").get_all_values()
+    author_row = author
+    print(author)
+
+
+def main():   
+    """
+    run all functions for program
+    """
+    data = get_catalogue_data()
+    catalogue_data = (data)
+    update_catalogue_worksheet(catalogue_data)
+    select_author(catalogue_data)
+
+
+print("Welcome to history catalogue")
+main()    
 
 
