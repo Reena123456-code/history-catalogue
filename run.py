@@ -18,14 +18,21 @@ def get_catalogue_data():
     """
     Get catalogue data input from the user
     """ 
-    print("please enter catagory, box no, colour author, title to extend catalogue")
-    print("data should be 6 items, seperated by commas")
-    print("example: irish, 1,green, tadgh o'Keeffee, early Ireland")
+    while True: 
+        catalogue_data = ["catagory()", "box no()", "colour()", "author()", "title()"]   
+        print("please enter catagory, box no, colour, author, title to extend catalogue")
+        print("data should be 5 items, seperated by commas")
+        print("example: irish, 1,green, tadgh o'Keeffee, early Ireland")
 
-    data_str = input("Enter your book info here: ")
+        data_str = input("Enter your book info here: ")
 
-    catalogue_data = data_str.split(",")
-    validate_data(catalogue_data)
+        catalogue_data = data_str.split(",")
+    
+        if validate_data(catalogue_data):
+            print("data valid")
+            break
+
+    return catalogue_data
 
 def validate_data(values):
     """
@@ -41,8 +48,10 @@ def validate_data(values):
            )
     except ValueError as e:
         print(f"Invalid data:{e}, Please try again\n")
+        return False
 
+    return True    
 
-get_catalogue_data()
+data = get_catalogue_data()
 
 
