@@ -18,8 +18,7 @@ def get_catalogue_data():
     """
     Get catalogue data input from the user
     """ 
-    while True: 
-        catalogue_data = ["catagory()", "box no()", "colour()", "author()", "title()"]   
+    while True:    
         print("please enter catagory, box no, colour, author, title to extend catalogue")
         print("data should be 5 items, seperated by commas")
         print("example: irish, 1,green, tadgh o'Keeffee, early Ireland")
@@ -41,7 +40,17 @@ def validate_data(values):
     or if there are not 5 values
     """
     try:
-        [list(value) for value in values]
+        class Book:
+            def __init__(self, catagory, boxNo, colour, author, title):
+                self.catagory = catagory
+                self.boxNo = boxNo
+                self.colour = colour
+                self.author = author
+                self.title = title
+
+            def __str__(values):
+                return f"{self.catagory},{self.boxNo},{self.colour},{self.author},{self.title}"
+
         if len(values) != 5:    
            raise ValueError(
             f"5 values required, you provided {len(values)}"
@@ -52,6 +61,19 @@ def validate_data(values):
 
     return True    
 
+
+def update_catalogue_worksheet(data):
+    """
+    update catalogue worksheet, add new row with data given
+    """
+    print("Updating catalogue worksheet...\n")
+    catalogue_worksheet = SHEET.worksheet("catalogue")
+    catalogue_worksheet.append_row(data)
+    print("Catalogue worksheet updated successfully \n")
+
+    
 data = get_catalogue_data()
+catalogue_data = (data)
+update_catalogue_worksheet(catalogue_data)
 
 
